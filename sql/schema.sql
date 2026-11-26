@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS student_management
+
+USE student_management;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  phone VARCHAR(20) NULL,
+  course VARCHAR(100) NULL,
+  role ENUM('admin', 'student') NOT NULL DEFAULT 'student',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_users_email (email),
+  KEY idx_users_role (role)
+) ENGINE=InnoDB;
